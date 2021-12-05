@@ -1,0 +1,44 @@
+{% load static %}
+{% block content %}
+
+<html lang="en">
+  <head>
+    <!--  js script source for charts --> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script> var celsius_temp_lancaster = "{{celsius_temp_lancaster}}";</script>
+    <script> var celsius_temp_toronto = "{{celsius_temp_toronto}}";</script>
+    <!--  js script source for email service -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <!--  call js script for email service -->
+    <script type="text/javascript">
+    (function() {
+      emailjs.init("user_bKcmSissET3hdl0FY3Abm");
+    })();
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" type=text/css href="{% static 'css/main.css' %}" />
+    <title>Weather Application</title>
+  </head>
+  <body>
+    ​<div id="footer">
+			&nbsp jsroussel11@gmail.com &copy; James Roussel
+		</div>
+    <h1>
+      Choose Your City 
+    </h1>
+    <form name=form action="" method='GET'> 
+        {% csrf_token %}
+            <select name="City" size="1">
+                <option id = lancaster value="Lancaster">Lancaster</option>
+                <option id = toronto value="Toronto">Toronto</option>
+            </select>			
+        <button onclick="sendMail()" id ="submit" type="submit">Confirm</button>
+    </form>
+    <canvas id="myChart" width='400' height='400'></canvas>
+    <script type ='text/javascript' src="{% static 'js/chart.js'%}"></script>
+  </body>
+</html>
+{% endblock content %}
